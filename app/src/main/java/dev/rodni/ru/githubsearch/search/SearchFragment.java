@@ -1,6 +1,89 @@
 package dev.rodni.ru.githubsearch.search;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class SearchFragment extends Fragment {
+import java.util.ArrayList;
+
+import dev.rodni.ru.githubsearch.R;
+import dev.rodni.ru.githubsearch.base.BasePresenter;
+import dev.rodni.ru.githubsearch.data.reposmodel.Repo;
+
+public class SearchFragment extends Fragment implements SearchContract.View{
+
+    private SearchContract.Presenter presenter;
+
+    public SearchFragment() { }
+
+    public static SearchFragment getInstance(){
+        return new SearchFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //для ориентации
+        setRetainInstance(true);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View v = inflater.inflate(R.layout.fragment_search, container, false);
+
+        return v;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (presenter == null) {
+            presenter = new SearchPresenter(this);
+        }
+
+        presenter.subscribe();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+    @Override
+    public void onDestroy() {
+        presenter.unsubscribe();
+        super.onDestroy();
+    }
+
+    @Override
+    public void setPresenter(SearchContract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void makeToast(String message) {
+
+    }
+
+    @Override
+    public void setReposListData(ArrayList<Repo> reposListData) {
+
+    }
+
+    @Override
+    public void setNoReposListDataFound() {
+
+    }
 }
