@@ -1,6 +1,7 @@
 package dev.rodni.ru.githubsearch.search;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,8 +13,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import dev.rodni.ru.githubsearch.R;
-import dev.rodni.ru.githubsearch.base.BasePresenter;
 import dev.rodni.ru.githubsearch.data.reposmodel.Repo;
+import dev.rodni.ru.githubsearch.detailsearch.DetailsSearchActivity;
+import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
 
 public class SearchFragment extends Fragment implements SearchContract.View{
 
@@ -45,7 +47,9 @@ public class SearchFragment extends Fragment implements SearchContract.View{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (presenter == null) {
-            presenter = new SearchPresenter(this);
+            presenter = new SearchPresenter(this,
+                    SearchService.getInstanceSearchService(),
+                    SchedulerProvider.getInstanceSchedulerProvider());
         }
 
         presenter.subscribe();
@@ -85,5 +89,12 @@ public class SearchFragment extends Fragment implements SearchContract.View{
     @Override
     public void setNoReposListDataFound() {
 
+    }
+
+    @Override
+    public void startDetailsSearchActivity() {
+
+        Intent intent = new Intent(getActivity(), DetailsSearchActivity.class);
+        startActivity(intent);
     }
 }

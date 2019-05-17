@@ -16,6 +16,7 @@ public class DetailsSearchActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setUpFragment();
     }
 
     @Override
@@ -24,7 +25,7 @@ public class DetailsSearchActivity extends BaseActivity {
     }
 
     @Override
-    protected void setUpAuthFragment() {
+    protected void setUpFragment() {
         FragmentManager manager = this.getSupportFragmentManager();
 
         DetailsSearchFragment fragment = (DetailsSearchFragment) manager.findFragmentByTag(DETAILS_SEARCH_FRAGMENT);

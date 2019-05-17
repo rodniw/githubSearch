@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import dev.rodni.ru.githubsearch.R;
 import dev.rodni.ru.githubsearch.base.BasePresenter;
+import dev.rodni.ru.githubsearch.utils.BaseSchedulerProvider;
+import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
 
 public class AuthFragment extends Fragment implements AuthContract.View {
 
@@ -42,7 +44,9 @@ public class AuthFragment extends Fragment implements AuthContract.View {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (presenter == null) {
-            presenter = new AuthPresenter(this);
+            presenter = new AuthPresenter(this,
+                    AuthService.getInstanceAuthService(),
+                    SchedulerProvider.getInstanceSchedulerProvider());
         }
 
         presenter.subscribe();

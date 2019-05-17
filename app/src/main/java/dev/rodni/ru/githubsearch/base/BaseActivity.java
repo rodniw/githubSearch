@@ -107,5 +107,5 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract int getContentView();
 
-    protected abstract void setUpAuthFragment();
+    protected abstract void setUpFragment();
 }

@@ -17,7 +17,7 @@ public class AuthActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setUpAuthFragment();
+        setUpFragment();
     }
 
     @Override
@@ -26,7 +26,7 @@ public class AuthActivity extends BaseActivity {
     }
 
     @Override
-    protected void setUpAuthFragment() {
+    protected void setUpFragment() {
         FragmentManager manager = this.getSupportFragmentManager();
 
         AuthFragment fragment = (AuthFragment) manager.findFragmentByTag(AUTH_FRAGMENT);

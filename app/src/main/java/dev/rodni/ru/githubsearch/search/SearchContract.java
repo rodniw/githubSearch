@@ -12,11 +12,15 @@ public interface SearchContract {
         void setReposListData(ArrayList<Repo> reposListData);
 
         void setNoReposListDataFound();
+
+        void startDetailsSearchActivity();
     }
 
     interface Presenter extends BasePresenter {
         void onItemClick();
 
         void onOwnerClick();
+
+        void onSwipeRefresh();
     }
 }

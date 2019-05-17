@@ -7,6 +7,21 @@ import io.reactivex.schedulers.Schedulers;
 
 //Для использования во время девайс тестов и продакшена
 public class SchedulerProvider implements BaseSchedulerProvider {
+
+    private static SchedulerProvider instanceSschedulerProvider;
+
+    private SchedulerProvider() {
+
+    }
+
+    public static SchedulerProvider getInstanceSchedulerProvider() {
+        if (instanceSschedulerProvider == null) {
+            instanceSschedulerProvider = new SchedulerProvider();
+        }
+
+        return instanceSschedulerProvider;
+    }
+
     @Override
     public Scheduler computation() {
         return Schedulers.computation();

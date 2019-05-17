@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import dev.rodni.ru.githubsearch.R;
-import dev.rodni.ru.githubsearch.base.BasePresenter;
+import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
 
-public class DetailsSearchFragment extends Fragment {
+public class DetailsSearchFragment extends Fragment implements DetailsSearchContract.View {
 
     private DetailsSearchContract.Presenter presenter;
 
@@ -42,7 +42,9 @@ public class DetailsSearchFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (presenter == null) {
-            presenter = new DetailsSearchPresenter(this);
+            presenter = new DetailsSearchPresenter(this,
+                    DetailsSearchService.getInstanceDetailsSearchService(),
+                    SchedulerProvider.getInstanceSchedulerProvider());
         }
 
         presenter.subscribe();
@@ -65,7 +67,7 @@ public class DetailsSearchFragment extends Fragment {
     }
 
     @Override
-    public void setPresenter(BasePresenter presenter) {
+    public void setPresenter(DetailsSearchContract.Presenter presenter) {
 
     }
 

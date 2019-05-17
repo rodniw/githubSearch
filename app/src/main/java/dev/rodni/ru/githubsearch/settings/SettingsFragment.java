@@ -8,13 +8,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import dev.rodni.ru.githubsearch.R;
 import dev.rodni.ru.githubsearch.base.BasePresenter;
+import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends Fragment implements SettingsContract.View{
 
     private SettingsContract.Presenter presenter;
+    private Button logOutBtn;
 
     public SettingsFragment() { }
 
@@ -33,7 +36,14 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_auth, container, false);
+        View v = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        logOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onClickLogOut();
+            }
+        });
 
         return v;
     }
@@ -42,7 +52,9 @@ public class SettingsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (presenter == null) {
-            presenter = new SettingsPresenter(this);
+            presenter = new SettingsPresenter(this,
+                    SettingsService.getInstanceSearchService(),
+                    SchedulerProvider.getInstanceSchedulerProvider());
         }
 
         presenter.subscribe();
@@ -65,7 +77,7 @@ public class SettingsFragment extends Fragment {
     }
 
     @Override
-    public void setPresenter(BasePresenter presenter) {
+    public void setPresenter(SettingsContract.Presenter presenter) {
 
     }
 
