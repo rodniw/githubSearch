@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import dev.rodni.ru.githubsearch.R;
 import dev.rodni.ru.githubsearch.data.reposmodel.Repo;
 import dev.rodni.ru.githubsearch.detailsearch.DetailsSearchActivity;
@@ -19,7 +21,7 @@ import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
 
 public class SearchFragment extends Fragment implements SearchContract.View{
 
-    private SearchContract.Presenter presenter;
+    @Inject SearchPresenter presenter;
 
     public SearchFragment() { }
 
@@ -47,9 +49,18 @@ public class SearchFragment extends Fragment implements SearchContract.View{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (presenter == null) {
-            presenter = new SearchPresenter(this,
-                    SearchService.getInstanceSearchService(),
-                    SchedulerProvider.getInstanceSchedulerProvider());
+            //presenter = new SearchPresenter(this,
+            //        SearchService.getInstanceSearchService(),
+            //        SchedulerProvider.getInstanceSchedulerProvider());
+
+            DaggerSearchComponent.builder()
+                    .searchPresenterModule(
+                            new SearchPresenterModule(this,
+                                    SearchService.getInstanceSearchService(),
+                                    SchedulerProvider.getInstanceSchedulerProvider()
+
+                            )).build()
+                    .inject(this);
         }
 
         presenter.subscribe();

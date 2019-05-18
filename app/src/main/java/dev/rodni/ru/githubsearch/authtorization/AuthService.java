@@ -1,5 +1,7 @@
 package dev.rodni.ru.githubsearch.authtorization;
 
+import io.reactivex.Completable;
+
 public class AuthService implements AuthSource {
 
     private static AuthService instanceAuthService;
@@ -12,5 +14,10 @@ public class AuthService implements AuthSource {
             instanceAuthService = new AuthService();
         }
         return instanceAuthService;
+    }
+
+    @Override
+    public Completable getUserUniqueId() {
+        return null;
     }
 }

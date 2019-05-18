@@ -1,5 +1,7 @@
 package dev.rodni.ru.githubsearch.search;
 
+import javax.inject.Inject;
+
 import dev.rodni.ru.githubsearch.utils.BaseSchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -10,6 +12,7 @@ public class SearchPresenter implements SearchContract.Presenter {
     private SearchSource source;
     private BaseSchedulerProvider schedulerProvider;
 
+    @Inject
     public SearchPresenter(SearchContract.View view,
                            SearchSource source,
                            BaseSchedulerProvider schedulerProvider
