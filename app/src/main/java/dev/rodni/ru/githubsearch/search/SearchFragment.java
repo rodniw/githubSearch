@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import dev.rodni.ru.githubsearch.R;
 import dev.rodni.ru.githubsearch.data.reposmodel.Repo;
 import dev.rodni.ru.githubsearch.detailsearch.DetailsSearchActivity;
-import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
+import dev.rodni.ru.githubsearch.di.MyApplication;
 
 public class SearchFragment extends Fragment implements SearchContract.View{
 
@@ -34,6 +34,15 @@ public class SearchFragment extends Fragment implements SearchContract.View{
         super.onCreate(savedInstanceState);
         //для ориентации
         setRetainInstance(true);
+
+        DaggerSearchComponent.builder()
+                .searchPresenterModule(new SearchPresenterModule(this))
+                .applicationComponent(
+                        ((MyApplication) getActivity().getApplication())
+                                .getApplicationComponent()
+                )
+                .build()
+                .inject(this);
     }
 
     @Nullable
@@ -48,22 +57,6 @@ public class SearchFragment extends Fragment implements SearchContract.View{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (presenter == null) {
-            //presenter = new SearchPresenter(this,
-            //        SearchService.getInstanceSearchService(),
-            //        SchedulerProvider.getInstanceSchedulerProvider());
-
-            DaggerSearchComponent.builder()
-                    .searchPresenterModule(
-                            new SearchPresenterModule(this,
-                                    SearchService.getInstanceSearchService(),
-                                    SchedulerProvider.getInstanceSchedulerProvider()
-
-                            )).build()
-                    .inject(this);
-        }
-
-        presenter.subscribe();
     }
 
     @Override

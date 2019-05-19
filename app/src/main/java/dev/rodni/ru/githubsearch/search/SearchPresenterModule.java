@@ -1,9 +1,19 @@
 package dev.rodni.ru.githubsearch.search;
 
 import dagger.Module;
-import dev.rodni.ru.githubsearch.utils.FragmentScoped;
+import dagger.Provides;
 
-@FragmentScoped
 @Module
 public class SearchPresenterModule {
+
+    private final SearchContract.View view;
+
+    public SearchPresenterModule(SearchContract.View view) {
+        this.view = view;
+    }
+
+    @Provides
+    SearchContract.View provideSearchView() {
+        return view;
+    }
 }

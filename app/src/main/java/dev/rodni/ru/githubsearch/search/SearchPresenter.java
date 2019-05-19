@@ -2,20 +2,20 @@ package dev.rodni.ru.githubsearch.search;
 
 import javax.inject.Inject;
 
-import dev.rodni.ru.githubsearch.utils.BaseSchedulerProvider;
+import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class SearchPresenter implements SearchContract.Presenter {
 
     private SearchContract.View view;
     private CompositeDisposable compositeDisposable;
-    private SearchSource source;
-    private BaseSchedulerProvider schedulerProvider;
+    private SearchService source;
+    private SchedulerProvider schedulerProvider;
 
     @Inject
     public SearchPresenter(SearchContract.View view,
-                           SearchSource source,
-                           BaseSchedulerProvider schedulerProvider
+                           SearchService source,
+                           SchedulerProvider schedulerProvider
                            ) {
         this.view = view;
         this.source = source;

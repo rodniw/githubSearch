@@ -2,6 +2,8 @@ package dev.rodni.ru.githubsearch.search;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import dev.rodni.ru.githubsearch.data.reposmodel.Repo;
 import io.reactivex.Maybe;
 
@@ -9,7 +11,8 @@ public class SearchService implements SearchSource {
 
     private static SearchService instanceSearchService;
 
-    private SearchService() {
+    @Inject
+    public SearchService() {
     }
 
     public static SearchService getInstanceSearchService(){
