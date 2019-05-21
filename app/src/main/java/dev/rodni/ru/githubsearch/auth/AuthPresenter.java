@@ -1,5 +1,6 @@
-package dev.rodni.ru.githubsearch.authtorization;
+package dev.rodni.ru.githubsearch.auth;
 
+import dev.rodni.ru.githubsearch.data.authservice.AuthSource;
 import dev.rodni.ru.githubsearch.utils.BaseSchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -15,11 +16,6 @@ public class AuthPresenter implements AuthContract.Presenter{
                          BaseSchedulerProvider schedulerProvider
                          ) {
         this.view = view;
-    }
-
-    @Override
-    public void onStopAuthButtonClick() {
-
     }
 
     @Override

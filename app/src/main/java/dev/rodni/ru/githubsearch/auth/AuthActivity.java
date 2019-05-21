@@ -1,4 +1,4 @@
-package dev.rodni.ru.githubsearch.search;
+package dev.rodni.ru.githubsearch.auth;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,16 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import dev.rodni.ru.githubsearch.R;
 import dev.rodni.ru.githubsearch.utils.ActivityUtils;
 
-public class SearchActivity extends AppCompatActivity {
+public class AuthActivity extends AppCompatActivity {
 
     private FragmentManager manager;
 
-    public static final String SEARCH_FRAGMENT = "SEARCH_FRAGMENT";
+    public static final String AUTH_FRAGMENT = "AUTH_FRAGMENT";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_auth);
 
         manager = getSupportFragmentManager();
 
@@ -25,16 +25,16 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     protected void createFragment() {
-        SearchFragment fragment =  (SearchFragment) manager.findFragmentByTag(SEARCH_FRAGMENT);
+        AuthFragment fragment =  (AuthFragment) manager.findFragmentByTag(AUTH_FRAGMENT);
 
         if (fragment == null){
-            fragment = SearchFragment.getInstance();
+            fragment = AuthFragment.getInstance();
         }
 
         ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                 fragment,
-                R.id.fragment_search,
-                SEARCH_FRAGMENT
+                R.id.fragment_auth,
+                AUTH_FRAGMENT
         );
     }
 }

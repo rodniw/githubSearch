@@ -35,7 +35,7 @@ public class SettingsActivity extends BaseActivity {
         }
 
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.search_fragment, fragment, SETTINGS_FRAGMENT)
-                .commit();
+        //transaction.replace(R.id.search_fragment, fragment, SETTINGS_FRAGMENT)
+        //        .commit();
     }
 }

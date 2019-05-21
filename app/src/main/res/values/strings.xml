@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">githubSearch</string>
     <string name="ok_string">Ok</string>
+    <string name="come_in_as_a_guest">Войти как гость</string>
+    <string name="come_in_as_a_github_user">Войти в свой аккаунт GitHub</string>
 </resources>
