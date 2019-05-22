@@ -1,4 +1,4 @@
-package dev.rodni.ru.githubsearch.search;
+package dev.rodni.ru.githubsearch.data.searchservice;
 
 import java.util.List;
 

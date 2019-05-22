@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import dev.rodni.ru.githubsearch.BuildConfig;
@@ -20,6 +22,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OAuthActivity extends AppCompatActivity {
+
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class OAuthActivity extends AppCompatActivity {
                 String code = uri.getQueryParameter("code");
                 if (code != null) {
                     // TODO We can probably do something with this code! Show the user that we are logging them in
+                    mProgressBar.setVisibility(View.VISIBLE);
 
                     final SharedPreferences prefs = this.getSharedPreferences(
                             BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);

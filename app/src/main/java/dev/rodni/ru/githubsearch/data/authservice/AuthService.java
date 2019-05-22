@@ -1,10 +1,13 @@
 package dev.rodni.ru.githubsearch.data.authservice;
 
+import javax.inject.Inject;
+
 public class AuthService implements AuthSource {
 
     private static AuthService instanceAuthService;
 
-    private AuthService() {
+    @Inject
+    public AuthService() {
 
     }
 

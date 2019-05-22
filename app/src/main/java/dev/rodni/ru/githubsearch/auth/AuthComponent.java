@@ -1,10 +1,12 @@
 package dev.rodni.ru.githubsearch.auth;
 
 import dagger.Component;
-import retrofit2.Retrofit;
+import dev.rodni.ru.githubsearch.di.component.ApplicationComponent;
+import dev.rodni.ru.githubsearch.utils.FragmentScoped;
 
-@Component(modules = AuthPresenterModule.class)
+@FragmentScoped
+@Component(dependencies = ApplicationComponent.class,
+           modules = AuthPresenterModule.class)
 public interface AuthComponent {
-
-    Retrofit getRetrofit();
+    void inject(AuthFragment authFragment);
 }

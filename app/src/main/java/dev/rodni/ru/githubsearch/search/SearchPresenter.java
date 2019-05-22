@@ -2,6 +2,7 @@ package dev.rodni.ru.githubsearch.search;
 
 import javax.inject.Inject;
 
+import dev.rodni.ru.githubsearch.data.searchservice.SearchService;
 import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
 

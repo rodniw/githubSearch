@@ -10,7 +10,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import dev.rodni.ru.githubsearch.search.SearchContract;
 import dev.rodni.ru.githubsearch.search.SearchPresenter;
-import dev.rodni.ru.githubsearch.search.SearchService;
+import dev.rodni.ru.githubsearch.data.searchservice.SearchService;
 import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
 
 @RunWith(MockitoJUnitRunner.class)

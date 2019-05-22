@@ -1,19 +1,22 @@
 package dev.rodni.ru.githubsearch.auth;
 
-import dev.rodni.ru.githubsearch.data.authservice.AuthSource;
-import dev.rodni.ru.githubsearch.utils.BaseSchedulerProvider;
+import javax.inject.Inject;
+
+import dev.rodni.ru.githubsearch.data.authservice.AuthService;
+import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class AuthPresenter implements AuthContract.Presenter{
 
     private AuthContract.View view;
-    private AuthSource authSource;
-    private BaseSchedulerProvider schedulerProvider;
+    private AuthService authSource;
+    private SchedulerProvider schedulerProvider;
     private CompositeDisposable compositeDisposable;
 
+    @Inject
     public AuthPresenter(AuthContract.View view,
-                         AuthSource authSource,
-                         BaseSchedulerProvider schedulerProvider
+                         AuthService authSource,
+                         SchedulerProvider schedulerProvider
                          ) {
         this.view = view;
     }

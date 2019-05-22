@@ -6,6 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_search"
     tools:context=".search.SearchActivity"
-    android:background="@drawable/backgithub">
+    android:background="@drawable/large">
 
 </android.support.constraint.ConstraintLayout>

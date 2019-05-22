@@ -11,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import javax.inject.Inject;
+
 import dev.rodni.ru.githubsearch.R;
 import dev.rodni.ru.githubsearch.base.BasePresenter;
 import dev.rodni.ru.githubsearch.data.authservice.AuthService;
+import dev.rodni.ru.githubsearch.di.MyApplication;
 import dev.rodni.ru.githubsearch.search.SearchActivity;
 import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
 
@@ -25,7 +28,9 @@ import dev.rodni.ru.githubsearch.utils.SchedulerProvider;
 
 public class AuthFragment extends Fragment implements AuthContract.View {
 
-    private AuthContract.Presenter presenter;
+    //private AuthContract.Presenter presenter;
+
+    @Inject AuthPresenter presenter;
 
     private Button logInBtn;
     private Button guestBtn;
@@ -53,6 +58,15 @@ public class AuthFragment extends Fragment implements AuthContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_auth, container, false);
+
+        DaggerAuthComponent.builder()
+                .authPresenterModule(new AuthPresenterModule(this))
+                .applicationComponent(
+                        ((MyApplication) getActivity().getApplication())
+                                .getApplicationComponent()
+                )
+                .build()
+                .inject(this);
 
         logInBtn = (Button) v.findViewById(R.id.log_in_btn);
         guestBtn = (Button) v.findViewById(R.id.guest_in_btn);

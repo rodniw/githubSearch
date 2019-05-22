@@ -2,6 +2,9 @@ package dev.rodni.ru.githubsearch.di;
 
 import android.app.Application;
 
+import dev.rodni.ru.githubsearch.di.component.ApplicationComponent;
+import dev.rodni.ru.githubsearch.di.module.ApplicationModule;
+
 public class MyApplication extends Application {
     private static ApplicationComponent applicationComponent;
 
@@ -15,9 +18,14 @@ public class MyApplication extends Application {
     }
 
     private void initializeInjector() {
+
+        ApplicationModule applicationModule = new ApplicationModule(
+                getApplicationContext()
+        );
+
         applicationComponent = DaggerApplicationComponent
                 .builder()
-                .applicationModule(new ApplicationModule(this))
+                .applicationModule(applicationModule)
                 .build();
     }
 }
